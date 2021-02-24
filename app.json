@@ -3,6 +3,7 @@
     "name": "final",
     "slug": "final",
     "version": "1.0.0",
+    "entryPoint": "./src/app",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
