@@ -10,6 +10,7 @@ export const AuthContext = React.createContext({
 
 const AuthProvider = ({children}) => {
     
+    //Creating state for user
     const [user, setUser] = useState(null);
 
     return (

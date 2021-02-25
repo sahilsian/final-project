@@ -6,46 +6,18 @@ import Center from '../components/center'
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from './authprovider';
-import NavTabs from '../components/navtabs'
-
+import AuthScreens from './authscreens'
+import AppScreens from './appscreens';
 //Creating stack navigation for navigation via react-navigation
-const Stack = createStackNavigator()
 
-//---- Screen Creation:
-const Login = ({navigation}) => {
-    const {login} = useContext(AuthContext);
-    return (
-        <Center>
-            <Text>Login</Text>
-            <Button 
-                title="login" 
-                onPress={()=> {
-                    login();
-                }}
-            />
-            <Button 
-                title="logout" 
-                onPress={()=> {
-                    logout();
-                }}
-            />
-        </Center>
-    )
-}
-const Register = () => {
-    return (
-        <Center>
-            <Text>Register</Text>
-        </Center>
-    )
-}
-//---- End Screen Creation
+
 
 //Creating Routes for each page in application
 const Routes = ({}) => {
     const [loading, setLoading] = useState(true);
     const { user } = useContext(AuthContext);
 
+    //Seeing if the user is already authenticated with local storage
     useEffect(() => {
         AsyncStorage.getItem('user')
         .then( res => {
@@ -62,6 +34,7 @@ const Routes = ({}) => {
 
     }, [])
 
+    // loading indication when app loads specific screens
     if (loading) {
         return (
             <Center>
@@ -72,20 +45,12 @@ const Routes = ({}) => {
 
     return (
         <NavigationContainer>
-            {user ? 
-                <NavTabs></NavTabs>
-
-            :
-            <Stack.Navigator initialRouteName="Login">
-                <Stack.Screen 
-                    name='Login' 
-                    component={Login} 
-                />
-                <Stack.Screen 
-                    name='Register' 
-                    component={Register} 
-                />
-            </Stack.Navigator>
+            {/* Displays screens requiring auth or not requiring auth */}
+            { 
+            user ? 
+            <AppScreens></AppScreens>
+            : 
+            <AuthScreens></AuthScreens> 
             }
         </NavigationContainer>
         

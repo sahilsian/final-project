@@ -7,6 +7,7 @@ const Cont = styled.View`
     flex: 1;
 `;
 
+//Shortcut to center anything left - right, top - bottom
 const Center = ({ children }) => {
     return (
         <Cont>{children}</Cont>
