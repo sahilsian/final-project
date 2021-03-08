@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Center from '../center';
@@ -6,7 +6,7 @@ import { Text } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeStack from '../../pages/pages-app/home-stack';
 import SearchStack from '../../pages/pages-app/search-stack';
-import AccountStack from '../../pages/pages-app/account-stack';
+import AccountStack from '../../pages/pages-app/account/account-stack';
 
 const Nav = createBottomTabNavigator();
 
@@ -74,7 +74,7 @@ const NavTabs = () => {
                         ? 'create'
                         : 'create-outline'
                     }  else if (route.name === 'Profile') {
-                        iconName = focused
+                        iconName = focused 
                         ? 'person'
                         : 'person-outline'
                     }
@@ -88,6 +88,7 @@ const NavTabs = () => {
             <Nav.Screen name="Post" component={Post} />
             <Nav.Screen name="Search" component={SearchStack} />
             <Nav.Screen name="Profile" component={AccountStack} />
+
         </Nav.Navigator>
     )
 };

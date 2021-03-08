@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AuthContext } from './authprovider';
 import { Button, Text } from 'react-native';
 import Center from '../components/center';
+import CustomButton from '../components/button';
 
 const Stack = createStackNavigator()
 
@@ -25,6 +26,12 @@ const Login = ({navigation}) => {
                     logout();
                 }}
             />
+            <Button 
+                title="Test" 
+                onPress={()=> {
+                    navigation.navigate('Test')
+                }}
+            />
         </Center>
     )
 }
@@ -32,6 +39,13 @@ const Register = () => {
     return (
         <Center>
             <Text>Register</Text>
+        </Center>
+    )
+}
+const Test = () => {
+    return (
+        <Center>
+            <CustomButton></CustomButton>
         </Center>
     )
 }
@@ -48,6 +62,10 @@ const AuthScreens = () => {
             <Stack.Screen 
                 name='Register' 
                 component={Register} 
+            />
+            <Stack.Screen 
+                name='Test' 
+                component={Test} 
             />
         </Stack.Navigator>
     )

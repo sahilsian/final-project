@@ -5,6 +5,7 @@ const Cont = styled.View`
     align-items: center;
     justify-content: center;
     flex: 1;
+    margin: 0px 20px;
 `;
 
 //Shortcut to center anything left - right, top - bottom
