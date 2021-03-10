@@ -11,6 +11,7 @@ import CustomSlider from '../../../components/slider';
 
 const Cont = styled.View`
     flex: 1;
+    width: 100%;
 `;
 
 const FlexWrap = styled.View`
