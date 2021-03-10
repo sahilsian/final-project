@@ -4,6 +4,7 @@ import { AuthContext } from './authprovider';
 import { Button, Text } from 'react-native';
 import Center from '../components/center';
 import CustomButton from '../components/button';
+import CustomProfile from '../components/profile';
 
 const Stack = createStackNavigator()
 
@@ -46,6 +47,8 @@ const Test = () => {
     return (
         <Center>
             <CustomButton></CustomButton>
+            <Text></Text>
+            <CustomProfile></CustomProfile>
         </Center>
     )
 }
