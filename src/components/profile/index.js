@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {LinearGradient} from 'expo-linear-gradient';
 import { StyleSheet } from 'react-native';
 import CustomButton from '../button';
 import {View, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import CustomAvatar from '../avatar';
 
 const ProfileCont = styled.View`
     align-items: center;
@@ -45,7 +45,7 @@ const FollowrersNum = styled.Text`
 marginTop: 5px;
 `;
 
-const FolloweingText = styled.Text`
+const FollowingText = styled.Text`
 
 `;
 
@@ -109,7 +109,7 @@ const CustomProfile = ({follower, following, id, username, bio, nativelg, learni
     return (
         <ProfileCont>
             <TopCont>
-                <Avatar></Avatar>
+                <CustomAvatar></CustomAvatar>
                 <FollowBox>
                     <TopBox>
                         <FollowersCont>
@@ -117,7 +117,7 @@ const CustomProfile = ({follower, following, id, username, bio, nativelg, learni
                             <FollowrersNum>{follower}</FollowrersNum>
                         </FollowersCont>
                         <FollowingCont>
-                            <FolloweingText>Followeing</FolloweingText>
+                            <FollowingText>Following</FollowingText>
                             <FollowingNum>{following}</FollowingNum>
                         </FollowingCont>
                     </TopBox>
