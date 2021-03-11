@@ -6,6 +6,8 @@ import Center from '../components/center';
 import CustomButton from '../components/button';
 import CustomProfile from '../components/profile';
 import CustomAvatar from '../components/avatar';
+import Language from '../components/language';
+import LanguagePost from '../components/languagePost';
 
 const Stack = createStackNavigator()
 
@@ -47,11 +49,8 @@ const Register = () => {
 const Test = () => {
     return (
         <Center>
-            <CustomButton></CustomButton>
-            <Text></Text>
-            <CustomProfile></CustomProfile>
-            <Text></Text>
-            <CustomAvatar></CustomAvatar>
+            <LanguagePost/>
+            <Language/>
         </Center>
     )
 }
