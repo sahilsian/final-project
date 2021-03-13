@@ -17,7 +17,8 @@ const CustomAvatar = ({size, img, img_link}) => {
   }
   
     return (
-        <View style={widthstlying}>
+        <View style={widthstlying,
+                {resizeMode:'contain'}}>
             <Image source={img_link ? {uri: img_link} : img} style={[imgstyling, styles.avatarCont]} resizeMode="cover" size={size}/>
         </View>
     )
