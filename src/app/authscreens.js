@@ -4,8 +4,8 @@ import { AuthContext } from './authprovider';
 import { Button, Text } from 'react-native';
 import Center from '../components/center';
 import CustomButton from '../components/button';
-import CustomProfile from '../components/profile';
-import CustomAvatar from '../components/avatar';
+import Profile from '../components/profile';
+import Avatar from '../components/avatar';
 import Language from '../components/language';
 import LanguagePost from '../components/languagePost';
 

@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { StyleSheet } from 'react-native';
 import CustomButton from '../button';
+import Avatar from '../avatar';
 import {View, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import CustomAvatar from '../avatar';
 
 const ProfileCont = styled.View`
     align-items: center;
@@ -18,14 +18,6 @@ const TopCont = styled.View`
     height: 165px;
     padding: 20px;
     flexDirection: row;
-`;
-
-const Avatar = styled.View`
-    background-color: blue;
-    width: 126px;
-    height: 126px;
-    border-radius: 100px;
-
 `;
 
 const FollowBox = styled.View`
@@ -105,11 +97,11 @@ marginBottom: 30px;
 
 
 
-const CustomProfile = ({follower, following, id, username, bio, nativelg, learninglg}) => {
+const Profile = ({follower, following, id, username, bio, nativelg, learninglg}) => {
     return (
         <ProfileCont>
             <TopCont>
-                <CustomAvatar></CustomAvatar>
+                <Avatar></Avatar>
                 <FollowBox>
                     <TopBox>
                         <FollowersCont>
@@ -151,17 +143,20 @@ const CustomProfile = ({follower, following, id, username, bio, nativelg, learni
             </BottomCont>
         </ProfileCont>
         
+        
     )
 }
 
 var styles = StyleSheet.create({
     star: {        
-        color: "#A17AFE"
-      }
+        color: "#A17AFE",
+        fontSize: 16,
+      },
+
 
 });
 
-CustomProfile.defaultProps = {
+Profile.defaultProps = {
 following: "29",
 follower: "35",
 id: "12345",
@@ -172,4 +167,4 @@ learninglg: "English"
 
 }
 
-export default CustomProfile
+export default Profile
