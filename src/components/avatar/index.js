@@ -4,7 +4,7 @@ import {View, StyleSheet, Image} from 'react-native';
 
 
 
-const CustomAvatar = ({size, img, img_link}) => {
+const Avatar = ({size, img, img_link}) => {
 
   const widthstlying = {
     width: size ? size : 130,
@@ -17,8 +17,7 @@ const CustomAvatar = ({size, img, img_link}) => {
   }
   
     return (
-        <View style={widthstlying,
-                {resizeMode:'contain'}}>
+        <View style={widthstlying}>
             <Image source={img_link ? {uri: img_link} : img} style={[imgstyling, styles.avatarCont]} resizeMode="cover" size={size}/>
         </View>
     )
@@ -33,12 +32,12 @@ var styles = StyleSheet.create({
     }
 });
 
-CustomAvatar.defaultProps = {
+Avatar.defaultProps = {
     width: 130,
     height: 130,
     img: require("../../../assets/avatar.jpg"),
 
 }
 
-export default CustomAvatar
+export default Avatar
 
