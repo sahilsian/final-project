@@ -4,11 +4,18 @@ import { AuthContext } from './authprovider';
 import { Button, Text } from 'react-native';
 import Center from '../components/center';
 import CustomButton from '../components/button';
+<<<<<<< HEAD
 import StartPage from '../pages/pages-auth/start-page';
 import LoginCredentials from '../pages/pages-auth/login-page';
 import CreateAccount from '../pages/pages-auth/create-account-page';
 import ChooseLanguage from '../pages/pages-auth/choose-lang-page';
 import Completion from '../pages/pages-auth/completion-page';
+=======
+import CustomProfile from '../components/profile';
+import CustomAvatar from '../components/avatar';
+import Language from '../components/language';
+import LanguagePost from '../components/languagePost';
+>>>>>>> c4ac387943511f4c33ae20a140be758e12436e73
 
 const Stack = createStackNavigator()
 
@@ -48,13 +55,7 @@ const Register = () => {
         </Center>
     )
 }
-const Test = () => {
-    return (
-        <Center>
-            <CustomButton></CustomButton>
-        </Center>
-    )
-}
+
 //---- End Screen Creation
 
 //Screens under stack navigator
@@ -75,10 +76,6 @@ const AuthScreens = () => {
                 name='Register' 
                 component={CreateAccount}
                 options={{title: 'Create an Account'}}
-            />
-            <Stack.Screen 
-                name='Test' 
-                component={Test} 
             />
 
             <Stack.Screen
