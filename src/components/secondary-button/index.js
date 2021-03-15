@@ -7,25 +7,29 @@ const StyledButton = styled.TouchableOpacity`
     width: 100%;
     align-items: center;
     margin: 15px 0px;
+    background-color: #ffffff;
+    padding: 15px 0px;
+    border-radius: 20px;
+    border: 3px solid #8676FB;
+    elevation: 11;
+    shadow-color: #000;
+    shadowOffset: {
+        width: 0px,
+        height: 5px,
+    };
+    shadow-radius: 6.68px;
 `;
 
 const ButtonText = styled.Text`
-    color: #fff;
+    color: #8676FB;
     font-weight: bold;
     font-size: 16px;
 `;
 
-const CustomButton = ({title, onPress}) => {
+const CustomSecondaryButton = ({title, onPress}) => {
     return (
         <StyledButton onPress={onPress}>
-            <LinearGradient 
-            colors={['#8676FB', '#AB7BFF']}
-            start={{ x: 0.2, y: 0 }}
-            end={{ x: 0.8, y: 1 }}
-            style={styles.linearGradient}
-            >
                 <ButtonText>{title}</ButtonText>
-            </LinearGradient>
         </StyledButton>
     )
 }
@@ -39,18 +43,18 @@ var styles = StyleSheet.create({
         },
         shadowOpacity: 0.36,
         shadowRadius: 6.68,
-        backgroundColor: "transparent",
+            
         elevation: 11,
         width: "100%",
         alignItems: "center",
         paddingTop: 15,
         paddingBottom: 15,
-        borderRadius: 15
+        borderRadius: 20
     }
 });
 
-CustomButton.defaultProps = {
+CustomSecondaryButton.defaultProps = {
     title: "Hello World"
 }
 
-export default CustomButton
+export default CustomSecondaryButton
