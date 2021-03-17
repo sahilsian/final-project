@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import Center from '../center';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { set } from 'react-native-reanimated';
 
 const InputContainer = styled.View`
     width: 100%;
