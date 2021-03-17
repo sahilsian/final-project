@@ -49,8 +49,9 @@ const Register = () => {
 const Test = () => {
     return (
         <Center>
-            <LanguagePost/>
-            <Language/>
+            {/* <LanguagePost/>
+            <Language/> */}
+            <Profile></Profile>
         </Center>
     )
 }
