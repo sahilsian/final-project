@@ -66,7 +66,7 @@ const CommentText = styled.View`
 alignItems: flex-start;
 `;
 
-const LanguagePost = ({comment}) =>{
+const LanguagePost = ({comment,description, word, example, user}) =>{
     return(
         <LanguageCont>
             <LinearGradient
@@ -76,7 +76,7 @@ const LanguagePost = ({comment}) =>{
                 style={styles.linearGradient}
             >
                 <LanguageHeader>
-                    <Header>Language</Header>
+                    <Header>{word}</Header>
                     <AvatarCont>
                         <Avatar 
                             width= "100%"
@@ -88,13 +88,13 @@ const LanguagePost = ({comment}) =>{
                     <Image
                         source={require("../../../assets/star1.png")}
                     />
-                    <LanguageText>a system of words and grammar used by a group of people</LanguageText>
+                    <LanguageText>{description}</LanguageText>
                 </TextCont>
                 <TextCont>
                     <Image
                         source={require("../../../assets/check.png")}
                     />
-                    <LanguageText>He taught foreign languages</LanguageText>
+                    <LanguageText>{example}</LanguageText>
                 </TextCont>
                 <CommentLine/>
                 <CommentCont>
@@ -110,27 +110,15 @@ const LanguagePost = ({comment}) =>{
                     </CommentText>
                 </CommentCont>
                 <CommentCont>
-                <AvatarCont>
+                    <AvatarCont>
                         <Avatar 
                             width= "100%"
                             height="100%"
                         />
                     </AvatarCont>
                     <CommentText>
-                        <LanguageText>Ann</LanguageText>
-                        <LanguageText>I like this word as well!</LanguageText>
-                    </CommentText>
-                </CommentCont>
-                <CommentCont>
-                <AvatarCont>
-                        <Avatar 
-                            width= "100%"
-                            height="100%"
-                        />
-                    </AvatarCont>
-                    <CommentText>
-                        <LanguageText>Ann</LanguageText>
-                        <LanguageText>I like this word as well!</LanguageText>
+                        <LanguageText>{user}</LanguageText>
+                        <LanguageText>{comment}</LanguageText>
                     </CommentText>
                 </CommentCont>
             </LinearGradient>
@@ -148,6 +136,10 @@ var styles = StyleSheet.create({
 });
 
 LanguagePost.defaultProps = {
-    comment : "3",
+    word: "Language",
+    description:"a system of words and grammar used by a group of people",
+    example:"He taught foreign languages",
+    user: "Ann",
+    comment : "I like this word as well!"
 }
 export default LanguagePost;
