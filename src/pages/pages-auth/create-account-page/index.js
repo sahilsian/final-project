@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import styled from 'styled-components/native';
 import CustomButton from '../../../components/button';
 import { AuthContext } from '../../../app/authprovider';
@@ -25,20 +25,19 @@ const ButtonContainer = styled.View`
 
 
 const CreateAccount = ({navigation}) => {
+    const [fullname, setFullname] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
     const {login} = useContext(AuthContext);
     return (
         <Cont>
             <Center>
             <FlexWrap>
                 <CustomInput 
-                    title={"First Name"}
-                    placeholder={"First Name"}
-                    half
-                />
-                <CustomInput 
-                    title={"Last Name"}
-                    placeholder={"Last Name"}
-                    half
+                    title={"Full Name"}
+                    placeholder={"Full Name"}
+                    onChange={(e)=> setFullname(e)}
                 />
 
             </FlexWrap>
@@ -46,17 +45,23 @@ const CreateAccount = ({navigation}) => {
             <CustomInput
                 title={"Email"}
                 placeholder={"name@email.com"}
+                onChange={(e)=> setEmail(e)}
             />
             <CustomInput
                 title={"Password"}
                 placeholder={"Password"}
+                onChange={(e)=> setPassword(e)}
                 password
             />
             <ButtonContainer>
                 <CustomButton 
                 title={"Next"} 
                 onPress={()=> {
-                    navigation.navigate('ChooseLanguage')
+                    navigation.navigate('ChooseLanguage', {
+                        email: email,
+                        fullname: fullname,
+                        password: password
+                    })
                 }}
                 />
                 <ButtonFooter

@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import styled from 'styled-components/native';
 import CustomButton from '../../../components/button';
-
+import axios from 'axios'
 import Center from '../../../components/center';
 import CustomInput from '../../../components/Input';
 import ButtonFooter from '../../../components/button-footer';
@@ -26,20 +26,38 @@ const ButtonContainer = styled.View`
     padding-top: 80px;
 `;
 
-const ChooseLanguage = ({navigation}) => {
-    
+const ChooseLanguage = ({navigation, route}) => {
+    const {email, fullname, password} = route.params;
+    const [fluent, setFluent] = useState('')
+    const [native, setNative] = useState('')
+    const [level, setLevel] = useState(1)
+
+    const HandleSignup = async(email, fullname, password, fluent, native, level) => {
+        axios({
+            method: 'post',
+            url: 'localhost:8080/api/users/create',
+            data: {
+                email: email,
+                fullname: fullname,
+                password: password,
+                fluent_language: fluent,
+                learning_language: native,
+                learning_level: level
+            }
+        })
+    }
+    //navigation.navigate('Completion')
+
     return (
         <Cont>
             <Center>
-                <LanguageDropdown></LanguageDropdown>
-                <LanguageDropdown title={"Learning Language"}></LanguageDropdown>
-                <CustomSlider></CustomSlider>
+                <LanguageDropdown onChange={e => setFluent(e)}></LanguageDropdown>
+                <LanguageDropdown onChange={e => setFluent(e)} title={"Learning Language"}></LanguageDropdown>
+                <CustomSlider onSlidingComplete={e => setLevel(e)}></CustomSlider>
             <ButtonContainer>
                 <CustomButton 
-                title={"Next"} 
-                onPress={()=> {
-                    navigation.navigate('Completion')
-                }}
+                title={"Create your Account"} 
+                onPress={()=> HandleSignup(email, fullname, password, fluent, native, level)}
                 />
                 
             </ButtonContainer>

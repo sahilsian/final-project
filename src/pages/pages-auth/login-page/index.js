@@ -23,7 +23,6 @@ const ButtonContainer = styled.View`
 `;
 
 
-
 const LoginCredentials = ({navigation}) => {
     const {login} = useContext(AuthContext);
     return (

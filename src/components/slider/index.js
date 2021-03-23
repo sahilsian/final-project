@@ -17,7 +17,7 @@ const TextComp = styled.Text`
     font-size: 12px;
 `;
 
-const CustomSlider = () => {
+const CustomSlider = ({onSlidingComplete}) => {
     return (
         <Cont>
             <Slider
@@ -28,6 +28,7 @@ const CustomSlider = () => {
                     maximumTrackTintColor="#9F7AFE"
                     thumbTintColor="#A47AFE"
                     step={1}
+                    onSlidingComplete={onSlidingComplete}
             />
             <TextWrapper>
                 <TextComp>Beginner</TextComp>

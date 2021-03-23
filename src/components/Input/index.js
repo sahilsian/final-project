@@ -34,8 +34,14 @@ const PasswordView = styled.TouchableOpacity`
     display: ${props=>props.display ? 'flex' : 'none'};
 `;
 
+const Error = styled.Text`
+    color: #eb3434;
+    margin: 4px 0px;
+    font-size: 12px;
+    display: ${props=>props.display ? "flex" : "none"}
+`;
 
-const CustomInput = ({placeholder, half, title, password}) => {
+const CustomInput = ({placeholder, half, title, password, display, onChange}) => {
     const [iconname, setIconName] = useState('eye-off-outline')
     return (
         <Wrapper half={half}>
@@ -43,7 +49,8 @@ const CustomInput = ({placeholder, half, title, password}) => {
             <InputContainer>
                 <Input
                     placeholder={placeholder}
-                    secureTextEntry={iconname == 'eye-off-outline' ? true : false}
+                    secureTextEntry={iconname == 'eye-off-outline' ? false : true}
+                    onChange={onChange}
                 />
                 <PasswordView 
                 display={password}
@@ -57,6 +64,7 @@ const CustomInput = ({placeholder, half, title, password}) => {
                     <Ionicons name={iconname} size={24}/>
                 </PasswordView>
             </InputContainer>
+            <Error display={display}>Username or Password is Incorrect</Error>
         </Wrapper>
         
     )
