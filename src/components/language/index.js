@@ -61,7 +61,7 @@ const CommentNum = styled.Text`
 color: #FFFFFF;
 `;
 
-const Language = ({comment}) =>{
+const Language = ({commentNum, description, word, example}) =>{
     return(
         <LanguageCont>
             <LinearGradient
@@ -77,26 +77,26 @@ const Language = ({comment}) =>{
                             height="100%"
                         />
                     </AvatarCont>
-                    <Header>Language</Header>
+                    <Header>{word}</Header>
                 </LanguageHeader>
                 <TextCont>
                     <Image
                         source={require("../../../assets/star1.png")}
                     />
-                    <LanguageText>a system of words and grammar used by a group of people</LanguageText>
+                    <LanguageText>{description}</LanguageText>
                 </TextCont>
                 <TextCont>
                     <Image
                         source={require("../../../assets/check.png")}
                     />
-                    <LanguageText>He taught foreign languages</LanguageText>
+                    <LanguageText>{example}</LanguageText>
                 </TextCont>
                 <IconsCont>
                     <CommentCont>
                         <Image
                             source={require("../../../assets/message.png")}
                         />
-                        <CommentNum > {comment}</CommentNum>
+                        <CommentNum > {commentNum}</CommentNum>
                     </CommentCont>
                     <Image
                         source={require("../../../assets/bookmark.png")}
@@ -117,6 +117,9 @@ var styles = StyleSheet.create({
 });
 
 Language.defaultProps = {
-    comment : "3",
+    commentNum : "3",
+    word: "Language",
+    description:"a system of words and grammar used by a group of people",
+    example:"He taught foreign languages"
 }
 export default Language;

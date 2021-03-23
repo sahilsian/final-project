@@ -17,7 +17,7 @@ const AuthProvider = ({children}) => {
         <AuthContext.Provider value={{
             user,
             login: () => {
-                //Context confguration for logging in
+                //Context configuration for logging in
                 const AppUser = {username: "api"}
                 setUser(AppUser)
                 AsyncStorage.setItem("user", JSON.stringify(AppUser))
