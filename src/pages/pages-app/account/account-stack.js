@@ -4,6 +4,11 @@ import { Text,View,TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+import ProfilePage from './account-page';
+import AccountSettings from './account-settings-page';
+import { AuthContext } from '../../../app/authprovider';
+import { useContext } from 'react';
+import { useEffect } from 'react';
 
 const Drawer = createDrawerNavigator();
 
@@ -24,7 +29,7 @@ const createAccountStack = ({navigation}) => {
         <Stack.Navigator >
             <Stack.Screen 
                 name="Account"
-                component={Content}
+                component={ProfilePage}
                 options={{
                     headerTintColor: '#613EEA',
                     title: "Profile",
@@ -73,6 +78,21 @@ const createAccountStack = ({navigation}) => {
 }
 
 const AccountStack = ({navigation}) => {
+    const {logout} = useContext(AuthContext);
+
+
+    const Logout = () => {
+        useEffect(()=> {
+            logout()
+            navigation.navigate('Login')
+        }, [])
+        return (
+            <Center>
+
+            </Center>
+        )
+    }
+
     return (
         <Drawer.Navigator 
             drawerContentOptions={{
@@ -83,7 +103,8 @@ const AccountStack = ({navigation}) => {
 
         >
             <Drawer.Screen name="Profile" children={createAccountStack} />
-            <Drawer.Screen name="Settings" component={Content} />
+            <Drawer.Screen name="Settings" component={AccountSettings} />
+            <Drawer.Screen name="Logout" component={Logout} />
         </Drawer.Navigator>
     );
 }

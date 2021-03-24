@@ -13,7 +13,7 @@ const TextComp = styled.Text`
     padding: 10px 0px;
 `
 
-const LanguageDropdown = ({title}) => {
+const LanguageDropdown = ({title, onChange}) => {
     return (
         <Cont>
             <TextComp>{title}</TextComp>
@@ -25,7 +25,7 @@ const LanguageDropdown = ({title}) => {
                 items={languages}
                 placeholder={"Choose a Language"}
                 containerStyle={{width: '100%', height: 40}}
-                
+                onChangeItem={onChange}
             >
 
             </DropDownPicker>

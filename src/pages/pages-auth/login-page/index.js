@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import styled from 'styled-components/native';
 import CustomButton from '../../../components/button';
 import { AuthContext } from '../../../app/authprovider';
@@ -23,26 +23,29 @@ const ButtonContainer = styled.View`
 `;
 
 
-
-const LoginCredentials = ({navigation}) => {
+const LoginCredentials = ({navigation, route}) => {
     const {login} = useContext(AuthContext);
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     return (
         <Cont>
             <Center>
             <CustomInput
                 title={"Email"}
                 placeholder={"name@email.com"}
+                onChange={(e)=> setEmail(e)}
             />
             <CustomInput
                 title={"Password"}
                 placeholder={"Password"}
+                onChange={(e)=> setPassword(e)}
                 password
             />
             <ButtonContainer>
                 <CustomButton 
                 title={"Login"} 
                 onPress={()=> {
-                    login()
+                    login(email, password)
                 }}
                 />
                 <ButtonFooter 

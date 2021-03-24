@@ -1,7 +1,7 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import styled from 'styled-components/native';
 import CustomButton from '../../../components/button';
-
+import axios from 'axios'
 import Center from '../../../components/center';
 import CustomInput from '../../../components/Input';
 import ButtonFooter from '../../../components/button-footer';
@@ -26,20 +26,56 @@ const ButtonContainer = styled.View`
     padding-top: 80px;
 `;
 
-const ChooseLanguage = ({navigation}) => {
-    
+const ChooseLanguage = ({navigation, route}) => {
+    const {email, fullname, password} = route.params;
+    const [fluent, setFluent] = useState('')
+    const [native, setNative] = useState('')
+    const [level, setLevel] = useState(0)
+
+    const HandleSignup = async(email, fullname, password, native, fluent, level) => {
+        console.log(email, fullname, password, fluent, native, level)
+        axios({
+            method: 'post',
+            url: 'http://10.0.2.2:8080/api/users/create',
+            data: {
+                email: email,
+                fullname: fullname,
+                password: password,
+                fluent_language: fluent,
+                learning_language: native,
+                learning_level: level
+            }
+        })
+        .then((res)=> {
+            navigation.navigate('Completion', {
+                email: res.email
+            })
+        })
+        .catch((err)=> {
+            console.log(err, "error")
+        })
+    }
+    //navigation.navigate('Completion')
+
     return (
         <Cont>
             <Center>
-                <LanguageDropdown></LanguageDropdown>
-                <LanguageDropdown title={"Learning Language"}></LanguageDropdown>
-                <CustomSlider></CustomSlider>
+                <LanguageDropdown onChange={e => {
+                    setNative(e)
+                    console.log(fluent.label, native.label, level)
+                }}></LanguageDropdown>
+                <LanguageDropdown onChange={e => {
+                    setFluent(e)
+                    console.log(fluent.label, native.label, level)
+                }} title={"Learning Language"}></LanguageDropdown>
+                <CustomSlider onSlidingComplete={e => {
+                    setLevel(e)
+                    console.log(fluent.label, native.label, level)
+                }}></CustomSlider>
             <ButtonContainer>
                 <CustomButton 
-                title={"Next"} 
-                onPress={()=> {
-                    navigation.navigate('Completion')
-                }}
+                title={"Create your Account"} 
+                onPress={()=> HandleSignup(email, fullname, password, native.label, fluent.label , level)}
                 />
                 
             </ButtonContainer>

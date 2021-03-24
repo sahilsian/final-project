@@ -7,121 +7,127 @@ import {LinearGradient} from 'expo-linear-gradient'
 const LanguageCont = styled.View`
 align-items: center;
 border-radius: 6px;
-width: 303px;
-min-height: 209px;
+width: 100%;
+margin: 15px 0px;
+padding: 0px 15px;
+`;
+
+const Margin = styled.View`
+    width: 100%;
 `;
 
 const LanguageHeader = styled.View`
 align-items: center;
-padding: 20px;
 width: 100%;
 flexDirection: row;
 `;
+
 
 const Header = styled.Text`
 font-weight: bold;
 font-size: 24px;
 color: #ffffff ;
-margin-right: 120px;
 `;
 
 const AvatarCont = styled.View`
-width: 29px;
-height: 29px;
+    width: 22px;
+    height: 22px;
 `;
 
 const TextCont = styled.View`
 width: 100%;
-padding: 10px 20px 10px 20px;
 flexDirection: row;
 alignItems: flex-start;
+padding: 15px 0px;
 `;
 
 const LanguageText = styled.Text`
 display: flex;
 font-weight: normal;
 color: #ffffff ;
-font-size: 12px;
-padding: 3px;
-margin-left: 5px;
-margin-top: -3px;
+font-size: 14px;
 `;
 
 const CommentLine = styled.View`
 alignItems: center;
-width: 263px;
 height: 0px;
 border: 2px solid rgba(255, 255, 255, 0.3);
 border-radius: 1px;
-margin:30px;
+margin: 10px 0px;
 `;
 
 const CommentCont = styled.View`
 align-items: center;
-padding: 20px;
+padding: 20px 0px;
 width: 100%;
 flexDirection: row;
 `;
-const CommentText = styled.View`
-alignItems: flex-start;
+const CommentView = styled.View`
+    alignItems: flex-start;
+    margin-left: 10px;
 `;
 
-const LanguagePost = ({comment,description, word, example, user}) =>{
+const CommentTextAuthor = styled.Text`
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+`;
+
+const CommentText = styled.Text`
+    font-size: 12px;
+    color: #fff;
+`;
+
+const UserTitle = styled.View`
+    width: 100%;
+    padding-bottom: 10px;
+    flex-direction: row;
+    align-items: center;
+`;
+
+const UserName = styled.Text`
+    font-size: 12px;
+    color: #fff;
+    margin-left: 5px;
+    font-weight: bold;
+`;
+
+const LanguagePost = ({comment,description, word, example, user, name, children}) =>{
     return(
         <LanguageCont>
+
             <LinearGradient
                 colors={['#8676FB', '#AB7BFF']}
                 start={{ x: 0.2, y: 0 }}
                 end={{ x: 0.8, y: 1 }}
                 style={styles.linearGradient}
             >
-                <LanguageHeader>
-                    <Header>{word}</Header>
+            <Margin>
+                <UserTitle>
                     <AvatarCont>
-                        <Avatar 
-                            width= "100%"
-                            height="100%"
-                        />
+                            <Avatar 
+                            size={"100%"}
+                            />
                     </AvatarCont>
+                    <UserName>{name}</UserName>
+                </UserTitle>
+                <LanguageHeader>
+
+                    <Header>{word}</Header>
+                    
                 </LanguageHeader>
                 <TextCont>
-                    <Image
-                        source={require("../../../assets/star1.png")}
-                    />
                     <LanguageText>{description}</LanguageText>
                 </TextCont>
-                <TextCont>
-                    <Image
-                        source={require("../../../assets/check.png")}
-                    />
-                    <LanguageText>{example}</LanguageText>
-                </TextCont>
+                
                 <CommentLine/>
                 <CommentCont>
-                <AvatarCont>
-                        <Avatar 
-                            width= "100%"
-                            height="100%"
-                        />
-                    </AvatarCont>
-                    <CommentText>
-                        <LanguageText>Ann</LanguageText>
-                        <LanguageText>I like this word as well!</LanguageText>
-                    </CommentText>
+                {children}
                 </CommentCont>
-                <CommentCont>
-                    <AvatarCont>
-                        <Avatar 
-                            width= "100%"
-                            height="100%"
-                        />
-                    </AvatarCont>
-                    <CommentText>
-                        <LanguageText>{user}</LanguageText>
-                        <LanguageText>{comment}</LanguageText>
-                    </CommentText>
-                </CommentCont>
+            </Margin>
+
             </LinearGradient>
+
         </LanguageCont>
     )
 };
@@ -131,7 +137,8 @@ var styles = StyleSheet.create({
       alignItems: "center",
       paddingTop: 15,
       paddingBottom: 15,
-      borderRadius: 20
+      borderRadius: 20,
+      padding: 15,
     }
 });
 
@@ -140,6 +147,7 @@ LanguagePost.defaultProps = {
     description:"a system of words and grammar used by a group of people",
     example:"He taught foreign languages",
     user: "Ann",
-    comment : "I like this word as well!"
+    comment : "I like this word as well!",
+    name: "John Smith"
 }
 export default LanguagePost;

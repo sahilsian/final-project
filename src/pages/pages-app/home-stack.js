@@ -6,18 +6,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ChatList from './chat/chat-list';
 import UserChat from './chat/chat';
+import HomePage from './home-page';
 
 const Stack = createStackNavigator();
 
-function Content() { 
-    return (
-        <Center>
-            <Text>
-                Content
-            </Text>
-        </Center>
-    );
-}
 
 const HomeStack = ({navigation}) => {
     return (
@@ -25,7 +17,7 @@ const HomeStack = ({navigation}) => {
         >
             <Stack.Screen 
                 name="Content"
-                component={Content}
+                component={HomePage}
                 options={{
                     headerTintColor: '#613EEA',
                     headerRightContainerStyle: {
