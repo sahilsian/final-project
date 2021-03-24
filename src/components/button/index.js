@@ -7,6 +7,7 @@ const StyledButton = styled.TouchableOpacity`
     width: 100%;
     align-items: center;
     margin: 15px 0px;
+    display: ${props=>props.display ? "none" : "flex"};
 `;
 
 const ButtonText = styled.Text`
@@ -15,9 +16,9 @@ const ButtonText = styled.Text`
     font-size: 16px;
 `;
 
-const CustomButton = ({title, onPress}) => {
+const CustomButton = ({title, onPress, display}) => {
     return (
-        <StyledButton onPress={onPress}>
+        <StyledButton display={display} onPress={onPress}>
             <LinearGradient 
             colors={['#8676FB', '#AB7BFF']}
             start={{ x: 0.2, y: 0 }}

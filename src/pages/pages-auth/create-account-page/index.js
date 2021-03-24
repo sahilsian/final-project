@@ -37,7 +37,10 @@ const CreateAccount = ({navigation}) => {
                 <CustomInput 
                     title={"Full Name"}
                     placeholder={"Full Name"}
-                    onChange={(e)=> setFullname(e)}
+                    onChange={(e)=> {
+                        setFullname(e)
+                        console.log(fullname)
+                    }}
                 />
 
             </FlexWrap>
@@ -45,12 +48,18 @@ const CreateAccount = ({navigation}) => {
             <CustomInput
                 title={"Email"}
                 placeholder={"name@email.com"}
-                onChange={(e)=> setEmail(e)}
+                onChange={(e)=> {
+                    setEmail(e)
+                    console.log(fullname, email, password)
+                }}
             />
             <CustomInput
                 title={"Password"}
                 placeholder={"Password"}
-                onChange={(e)=> setPassword(e)}
+                onChange={(e)=> {
+                    setPassword(e)
+                    console.log(fullname, email, password)
+                }}
                 password
             />
             <ButtonContainer>

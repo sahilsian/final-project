@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { StyleSheet } from 'react-native';
 import CustomButton from '../button';
 import Avatar from '../avatar';
 import {View, Text} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const ProfileCont = styled.View`
     align-items: center;
@@ -22,23 +20,28 @@ const TopCont = styled.View`
 
 const FollowBox = styled.View`
     marginLeft: 30px;
+    justify-content: center;
 `;
 
 
 const FollowersCont = styled.View`
-
+    
 `;
 
 const FollowersText = styled.Text`
-
+    font-weight: bold;
+    font-size: 12px;
 `;
 
 const FollowrersNum = styled.Text`
-marginTop: 5px;
+    marginTop: 5px;
+    font-weight: bold;
+    font-size: 16px;
 `;
 
 const FollowingText = styled.Text`
-
+    font-weight: bold;
+    font-size: 12px;
 `;
 
 const FollowingCont = styled.View`
@@ -46,62 +49,50 @@ const FollowingCont = styled.View`
 `;
 
 const FollowingNum = styled.Text`
-marginTop: 5px;
+    marginTop: 5px;
+    font-weight: bold;
+    font-size: 16px;
 `;
 
 const BottomCont = styled.View`
 padding-left: 20px;
 padding-right: 20px;
+width: 100%;
 `;
 
 const SmallBox = styled.View`
-flexDirection: row;
+    flexDirection: row;
+    align-items: center;
 
 `;
 
 const Name = styled.Text`
-
-
+    font-size: 18px;
+    font-weight: bold;
 `;
 
 const Id = styled.Text`
 marginLeft: 10px;
-
+    font-size: 12px;
 `;
 
 const Bio = styled.Text`
     marginTop: 10px;
 `;
 
-const LgLevel = styled.View`
+
+
+const TopBox = styled.View`
     flexDirection: row;
 `;
 
-const NativeLg = styled.Text`
-    marginTop: 15px;
-`;
-
-const LearningLg = styled.Text`
-    marginTop: 15px;
-`;
-
-const NativeStars = styled.Text`
-    marginLeft: 20px;
-    marginTop: 15px;
-`;
-
-const TopBox = styled.View`
-flexDirection: row;
-marginBottom: 30px;
-`;
 
 
-
-const Profile = ({follower, following, id, username, bio, nativelg, learninglg}) => {
+const Profile = ({children, img, follower, following, id, username, bio, nativelg, learninglg, display}) => {
     return (
         <ProfileCont>
             <TopCont>
-                <Avatar></Avatar>
+                <Avatar img_link={img}></Avatar>
                 <FollowBox>
                     <TopBox>
                         <FollowersCont>
@@ -113,7 +104,7 @@ const Profile = ({follower, following, id, username, bio, nativelg, learninglg})
                             <FollowingNum>{following}</FollowingNum>
                         </FollowingCont>
                     </TopBox>
-                    <CustomButton title="Follow" />
+                    <CustomButton display={display} title="Follow" />
                 </FollowBox>
             </TopCont>
             <BottomCont>
@@ -122,24 +113,7 @@ const Profile = ({follower, following, id, username, bio, nativelg, learninglg})
                     <Id>ID: {id}</Id>
                 </SmallBox>
                 <Bio>{bio}</Bio>
-                <LgLevel>
-                    <NativeLg>{nativelg}</NativeLg>
-                    <NativeStars>
-                    <Ionicons name="star" style={styles.star} size="large"></Ionicons>
-                    <Ionicons name="star" style={styles.star} size="large"></Ionicons>
-                    <Ionicons name="star" style={styles.star} size="large"></Ionicons>
-                    <Ionicons name="star" style={styles.star} size="large"></Ionicons>
-                    <Ionicons name="star" style={styles.star} size="large"></Ionicons>
-                    </NativeStars>
-                </LgLevel>
-                <LgLevel>
-                    <LearningLg>{learninglg}</LearningLg>
-                    <NativeStars>
-                        <Ionicons name="star" style={styles.star} size="large"></Ionicons>
-                        <Ionicons name="star" style={styles.star} size="large"></Ionicons>
-                        <Ionicons name="star" style={styles.star} size="large"></Ionicons>
-                    </NativeStars>
-                </LgLevel>
+                {children}
             </BottomCont>
         </ProfileCont>
         
@@ -147,23 +121,13 @@ const Profile = ({follower, following, id, username, bio, nativelg, learninglg})
     )
 }
 
-var styles = StyleSheet.create({
-    star: {        
-        color: "#A17AFE",
-        fontSize: 16,
-      },
-
-
-});
 
 Profile.defaultProps = {
-following: "29",
-follower: "35",
-id: "12345",
-username: "Mary Williams",
-bio: "Hi! Let’s learn English together:) My name is Marry and I love to learn different cultures and languages.",
-nativelg: "Japanese",
-learninglg: "English"
+    following: "29",
+    follower: "35",
+    id: "12345",
+    username: "Mary Williams",
+    bio: "Hi! Let’s learn English together:) My name is Marry and I love to learn different cultures and languages.",
 
 }
 

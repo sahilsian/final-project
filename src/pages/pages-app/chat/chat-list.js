@@ -15,7 +15,7 @@ const ChatList = ({navigation}) => {
                 width: "100%",
                 backgroundColor: "none"
              }}
-            renderItem={({ item }) => {
+            renderItem={ ({ item }) => {
                 return (
                 <View
                     style={{

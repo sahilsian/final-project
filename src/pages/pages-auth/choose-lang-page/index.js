@@ -30,12 +30,13 @@ const ChooseLanguage = ({navigation, route}) => {
     const {email, fullname, password} = route.params;
     const [fluent, setFluent] = useState('')
     const [native, setNative] = useState('')
-    const [level, setLevel] = useState(1)
+    const [level, setLevel] = useState(0)
 
-    const HandleSignup = async(email, fullname, password, fluent, native, level) => {
+    const HandleSignup = async(email, fullname, password, native, fluent, level) => {
+        console.log(email, fullname, password, fluent, native, level)
         axios({
             method: 'post',
-            url: 'localhost:8080/api/users/create',
+            url: 'http://10.0.2.2:8080/api/users/create',
             data: {
                 email: email,
                 fullname: fullname,
@@ -45,19 +46,36 @@ const ChooseLanguage = ({navigation, route}) => {
                 learning_level: level
             }
         })
+        .then((res)=> {
+            navigation.navigate('Completion', {
+                email: res.email
+            })
+        })
+        .catch((err)=> {
+            console.log(err, "error")
+        })
     }
     //navigation.navigate('Completion')
 
     return (
         <Cont>
             <Center>
-                <LanguageDropdown onChange={e => setFluent(e)}></LanguageDropdown>
-                <LanguageDropdown onChange={e => setFluent(e)} title={"Learning Language"}></LanguageDropdown>
-                <CustomSlider onSlidingComplete={e => setLevel(e)}></CustomSlider>
+                <LanguageDropdown onChange={e => {
+                    setNative(e)
+                    console.log(fluent.label, native.label, level)
+                }}></LanguageDropdown>
+                <LanguageDropdown onChange={e => {
+                    setFluent(e)
+                    console.log(fluent.label, native.label, level)
+                }} title={"Learning Language"}></LanguageDropdown>
+                <CustomSlider onSlidingComplete={e => {
+                    setLevel(e)
+                    console.log(fluent.label, native.label, level)
+                }}></CustomSlider>
             <ButtonContainer>
                 <CustomButton 
                 title={"Create your Account"} 
-                onPress={()=> HandleSignup(email, fullname, password, fluent, native, level)}
+                onPress={()=> HandleSignup(email, fullname, password, native.label, fluent.label , level)}
                 />
                 
             </ButtonContainer>

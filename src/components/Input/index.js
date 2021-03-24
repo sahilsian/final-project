@@ -41,7 +41,7 @@ const Error = styled.Text`
     display: ${props=>props.display ? "flex" : "none"}
 `;
 
-const CustomInput = ({placeholder, half, title, password, display, onChange}) => {
+const CustomInput = ({placeholder, half, title, password, display, onChange,numberOfLines, multiline}) => {
     const [iconname, setIconName] = useState('eye-off-outline')
     return (
         <Wrapper half={half}>
@@ -50,7 +50,10 @@ const CustomInput = ({placeholder, half, title, password, display, onChange}) =>
                 <Input
                     placeholder={placeholder}
                     secureTextEntry={iconname == 'eye-off-outline' ? false : true}
-                    onChange={onChange}
+                    onChangeText={onChange}
+                    numberOfLines={numberOfLines}
+                    multiline={multiline}
+                    maxLength={254}
                 />
                 <PasswordView 
                 display={password}
@@ -74,7 +77,9 @@ CustomInput.defaultProps = {
     placeholder: "Hello World",
     half: false,
     title: "Hello World",
-    password: false
+    password: false,
+    numberOfLines: 1,
+    multiline: false
 };
 
 export default CustomInput;

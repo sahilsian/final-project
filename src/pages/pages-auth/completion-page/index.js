@@ -14,8 +14,8 @@ const ButtonContainer = styled.View`
 `;
 
 
-const Completion = () => {
-    const {login} = useContext(AuthContext);
+const Completion = ({navigation, route}) => {
+    const {email} = route.params;
     return (
         <Cont>
             <Center>
@@ -23,7 +23,7 @@ const Completion = () => {
                     <CustomButton 
                     title={"Get Started"} 
                     onPress={()=> {
-                        Login()
+                        navigation.navigate('LoginCred')
                     }}
                     />
                     
