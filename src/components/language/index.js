@@ -2,7 +2,10 @@ import React from 'react';
 import styled from 'styled-components/native';
 import Avatar from '../avatar';
 import { Text, View, Image, StyleSheet } from 'react-native';
-import {LinearGradient} from 'expo-linear-gradient'
+import {LinearGradient} from 'expo-linear-gradient';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useState} from 'react'
+
 
 const LanguageCont = styled.View`
 align-items: center;
@@ -18,16 +21,11 @@ width: 100%;
 flexDirection: row;
 `;
 
-const AvatarCont = styled.View`
-width: 21px;
-height: 21px;
-`;
-
 const Header = styled.Text`
 font-weight: bold;
 font-size: 24px;
 color: #ffffff ;
-margin-left: 5px;
+margin-left: 20px;
 `;
 const TextCont = styled.View`
 width: 100%;
@@ -50,18 +48,32 @@ width: 100%;
 flexDirection: row;
 alignItems: center;
 padding: 20px;
+
 `;
 
 const CommentCont = styled.View`
 flexDirection: row;
 alignItems: center;
-margin-right:200px;
+
+
 `;
 const CommentNum = styled.Text`
 color: #FFFFFF;
+margin-left: 10px;
+
 `;
 
-const Language = ({commentNum, description, word, example}) =>{
+const Saved = styled.View`
+position: relative;
+left: 105px;
+
+`;
+
+
+
+const Language = ({description, word, example}) =>{
+
+    const [bookmark, setBookmark]= useState("bookmark-outline") //change the saved icon fill
     return(
         <LanguageCont>
             <LinearGradient
@@ -71,36 +83,31 @@ const Language = ({commentNum, description, word, example}) =>{
                 style={styles.linearGradient}
             >
                 <LanguageHeader>
-                    <AvatarCont>
-                        <Avatar 
-                            width= "100%"
-                            height="100%"
-                        />
-                    </AvatarCont>
+                    <Avatar size={35}/>
                     <Header>{word}</Header>
                 </LanguageHeader>
                 <TextCont>
-                    <Image
-                        source={require("../../../assets/star1.png")}
-                    />
+                    <Ionicons name="star-outline" size="large" color="white"></Ionicons>
                     <LanguageText>{description}</LanguageText>
                 </TextCont>
                 <TextCont>
-                    <Image
-                        source={require("../../../assets/check.png")}
-                    />
+                    <Ionicons name="bulb-outline" size="large" color="white"></Ionicons>
                     <LanguageText>{example}</LanguageText>
                 </TextCont>
                 <IconsCont>
                     <CommentCont>
-                        <Image
-                            source={require("../../../assets/message.png")}
-                        />
-                        <CommentNum > {commentNum}</CommentNum>
+                    <Ionicons name="chatbox-outline" size="25" color="white"></Ionicons>
+                        <CommentNum>See Comments</CommentNum>
                     </CommentCont>
-                    <Image
-                        source={require("../../../assets/bookmark.png")}
-                    />
+                    <Saved>
+                    <Ionicons onPress={()=>{
+                       if (bookmark === "bookmark-outline") {
+                           setBookmark("bookmark")
+                       } else {
+                           setBookmark("bookmark-outline")
+                       }
+                    }}name={bookmark} size="25" color="white"></Ionicons>
+                    </Saved>
                 </IconsCont>
             </LinearGradient>
         </LanguageCont>
@@ -117,7 +124,6 @@ var styles = StyleSheet.create({
 });
 
 Language.defaultProps = {
-    commentNum : "3",
     word: "Language",
     description:"a system of words and grammar used by a group of people",
     example:"He taught foreign languages"
