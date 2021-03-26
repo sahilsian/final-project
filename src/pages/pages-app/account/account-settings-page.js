@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
 import Avatar from '../../../components/avatar';
@@ -6,6 +6,9 @@ import { Header } from 'react-native-elements';
 import CustomInput from '../../../components/Input';
 import LanguageDropdown from '../../../components/language-dropdown';
 import CustomButton from '../../../components/button';
+import { AsyncStorage } from 'react-native';
+import { Button, Image, View, Platform } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
 const Container = styled.View`
 `;
@@ -33,7 +36,74 @@ const EditTouch = styled.TouchableOpacity`
 
 const AccountSettings = ({navigation}) => {
 
-  
+    const [resdata, setResData] = useState('')
+    const [image, setImage] = useState(null);
+    const [bio, setBio] = useState('')
+    const [id, setId] = useState('')
+
+    const setProfile = async(bio, image) => {
+
+        axios({
+            method: 'post',
+            url: `http://10.0.2.2:8080/api/users/edit/${id}`,
+            data: {
+                bio: bio,
+                avatar: image
+            }
+        })
+
+        .then((res)=> {
+            navigation.navigate('Profile')
+
+        })
+    }
+
+    const GetProfile = async(user) => {
+        axios({
+            method: 'get',
+            url: `http://10.0.2.2:8080/api/users/${user}`
+        })
+
+        .then((res)=> {
+            setResData(res.data.result[0])
+            console.log('yay', resdata)
+            setImage(resdata.avatar)
+        })
+    }
+
+    useEffect(()=> {
+        AsyncStorage.getItem("user")
+        .then((value)=> {
+            const data = JSON.parse(value)
+            console.log(data.id);
+            GetProfile(data.id)
+            setId(data.id)
+        });
+
+        (async () => {
+            if (Platform.OS !== 'web') {
+              const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+              if (status !== 'granted') {
+                alert('Sorry, we need camera roll permissions to make this work!');
+              }
+            }
+        })();
+    }, [])
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.cancelled) {
+          setImage(result.uri);
+        }
+      };
 
     return (
         <Container>
@@ -46,21 +116,23 @@ const AccountSettings = ({navigation}) => {
                   }}
             />
             <AvatarBox>
-                <Avatar></Avatar>
-                <EditTouch>
+            {image && <Avatar img_link={image}></Avatar> }
+                <EditTouch onPress={pickImage}>
                     <EditProfile >Edit Avatar</EditProfile>
                 </EditTouch>
             </AvatarBox>
             <RegularBox>
-                <LanguageDropdown title={"Change Learning Language"}>
 
-                </LanguageDropdown>
-                <CustomInput multiline={true} title={"Set Bio"} numberOfLines={3} placeholder={"Type something about you"}></CustomInput>
+                <CustomInput onChange={(e)=> {
+                    setBio(e)
+                }} multiline={true} title={"Set Bio"} numberOfLines={3} placeholder={"Type something about you"}></CustomInput>
                
                 
             </RegularBox>
             <RegularBox>
-            <CustomButton title={"Save"}></CustomButton>
+            <CustomButton title={"Save"} onPress={()=> {
+                setProfile(bio, image)
+            }}></CustomButton>
 
             </RegularBox>
         </Container>

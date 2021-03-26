@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import HomeStack from '../../pages/pages-app/home-stack';
 import SearchStack from '../../pages/pages-app/search-stack';
 import AccountStack from '../../pages/pages-app/account/account-stack';
+import PostStack from '../../pages/pages-app/post/post-stack';
 
 const Nav = createBottomTabNavigator();
 
@@ -85,7 +86,7 @@ const NavTabs = () => {
             })}
           >
             <Nav.Screen name="Home" component={HomeStack} />
-            <Nav.Screen name="Post" component={Post} />
+            <Nav.Screen name="Post" component={PostStack} />
             <Nav.Screen name="Search" component={SearchStack} />
             <Nav.Screen name="Profile" component={AccountStack} />
 
