@@ -5,6 +5,7 @@ import Avatar from '../avatar';
 const Container = styled.View`
     flex-direction: row;
     align-items: center;
+    padding: 10px 0px;
 `;
 
 const CommentView = styled.View`
@@ -13,19 +14,19 @@ const CommentView = styled.View`
 `;
 
 const CommentTextAuthor = styled.Text`
-    font-size: 12px;
-    color: #fff;
+    font-size: 14px;
+    color: #000;
     font-weight: bold;
 `;
 
 const CommentText = styled.Text`
-    font-size: 12px;
-    color: #fff;
+    font-size: 14px;
+    color: #000;
 `;
 
 const AvatarCont = styled.View`
-    width: 22px;
-    height: 22px;
+    width: 40px;
+    height: 40px;
 `;
 
 

@@ -17,16 +17,16 @@ const WrapperTwo = styled.View`
     width: 100%;
 `;
 
-const PostForm = () => {
+const PostForm = ({onTitleChange, onBodyChange, Submit}) => {
     return (
         <Center>
             <Wrapper>
-                <CustomInput  maxlength={80} multiline placeholder={"Write a Title"} color={"#fff"} colorplace={"#B7B1D9"} background={"#8760E8"} title={"Write a Title"} titlecolor={"#fff"} fontweight></CustomInput>
-                <CustomInput numberOfLines={8}  maxlength={254} multiline placeholder={"Write a Description"} color={"#fff"} colorplace={"#B7B1D9"} background={"#8760E8"} title={"Write a Description"} titlecolor={"#fff"} fontweight></CustomInput>
+                <CustomInput onChange={onTitleChange} maxlength={80} multiline placeholder={"Write a Title"} color={"#fff"} colorplace={"#B7B1D9"} background={"#8760E8"} title={"Write a Title"} titlecolor={"#fff"} fontweight></CustomInput>
+                <CustomInput onChange={onBodyChange} numberOfLines={8}  maxlength={254} multiline placeholder={"Write a Description"} color={"#fff"} colorplace={"#B7B1D9"} background={"#8760E8"} title={"Write a Description"} titlecolor={"#fff"} fontweight></CustomInput>
             </Wrapper>
             <WrapperTwo>
-            <CustomButton title={"Create"}></CustomButton>
-
+            <CustomButton onPress={Submit} title={"Create"}></CustomButton>
+    
             </WrapperTwo>
 
         </Center>

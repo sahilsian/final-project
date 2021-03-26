@@ -7,6 +7,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import ChatList from './chat/chat-list';
 import UserChat from './chat/chat';
 import HomePage from './home-page';
+import IndividualPost from './individual-post-page';
 
 const Stack = createStackNavigator();
 
@@ -47,6 +48,16 @@ const HomeStack = ({navigation}) => {
                     title: "PenPal"
                 }} 
             />
+            <Stack.Screen
+                name={"Individual-Post"}
+                component={IndividualPost}
+                options={{
+                    headerTintColor: '#613EEA',
+                    title: "Post"
+                }} 
+            >
+
+            </Stack.Screen>
             <Stack.Screen 
                 name="Messages" 
                 component={ChatList}

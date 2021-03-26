@@ -30,15 +30,16 @@ const NativeStars = styled.Text`
     margin-top: 15px;
 `;
 
-const ProfilePage = ({route}) => {
-    
+const ConditionalProfilePage = ({route}) => {
+    let userid = route.params.id
+
     const [resdata, setResData] = useState('')
     const [postdata, setPostData] = useState('')
-
-    const GetProfile = async(user) => {
+    const GetProfile = async() => {
+        console.log(userid)
         axios({
             method: 'get',
-            url: `http://10.0.2.2:8080/api/users/${user}`
+            url: `http://10.0.2.2:8080/api/users/${userid}`
         })
 
         .then((res)=> {
@@ -47,10 +48,10 @@ const ProfilePage = ({route}) => {
         })
     }
 
-    const GetPosts = async(user) => {
+    const GetPosts = async() => {
         axios({
             method: 'get',
-            url: `http://10.0.2.2:8080/api/users/posts/${user}`
+            url: `http://10.0.2.2:8080/api/users/posts/${userid}`
         })
 
         .then((res)=> {
@@ -60,14 +61,8 @@ const ProfilePage = ({route}) => {
     }
 
     useEffect(()=> {
-        AsyncStorage.getItem("user")
-        .then((value)=> {
-            const data = JSON.parse(value)
-            console.log(data.id);
-            GetProfile(data.id)
-            GetPosts(data.id)
-        });
-
+        GetProfile()
+        GetPosts()
         
     }, [])
 
@@ -79,7 +74,6 @@ const ProfilePage = ({route}) => {
             username={resdata.fullname}
             id={resdata.id}
             bio={resdata.bio}
-            display
             img={resdata.avatar}
             >
 
@@ -147,4 +141,4 @@ var style = StyleSheet.create({
 
 });
 
-export default ProfilePage
+export default ConditionalProfilePage

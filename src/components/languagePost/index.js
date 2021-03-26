@@ -3,6 +3,8 @@ import styled from 'styled-components/native';
 import Avatar from '../avatar';
 import { Text, View, Image, StyleSheet } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient'
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const LanguageCont = styled.View`
 align-items: center;
@@ -92,7 +94,15 @@ const UserName = styled.Text`
     font-weight: bold;
 `;
 
-const LanguagePost = ({comment,description, word, example, user, name, children}) =>{
+const Touch = styled.TouchableOpacity`
+    display: ${props=>props.display ? "none": "flex"}
+`;
+
+const TouchTwo = styled.TouchableOpacity`
+
+`;
+
+const LanguagePost = ({comment, img, display, onCommentPress, onUserPress, description, word, example, user, name, children, navigation}) =>{
     return(
         <LanguageCont>
 
@@ -103,14 +113,21 @@ const LanguagePost = ({comment,description, word, example, user, name, children}
                 style={styles.linearGradient}
             >
             <Margin>
+                <TouchTwo onPress={onUserPress}>
+
                 <UserTitle>
+
                     <AvatarCont>
                             <Avatar 
                             size={"100%"}
+                            img_link={img}
                             />
                     </AvatarCont>
-                    <UserName>{name}</UserName>
+                        <UserName>{name}</UserName>
+
                 </UserTitle>
+                </TouchTwo>
+
                 <LanguageHeader>
 
                     <Header>{word}</Header>
@@ -120,9 +137,19 @@ const LanguagePost = ({comment,description, word, example, user, name, children}
                     <LanguageText>{description}</LanguageText>
                 </TextCont>
                 
-                <CommentLine/>
                 <CommentCont>
-                {children}
+                <Touch display={display} onPress={onCommentPress}>
+                <Ionicons 
+                                name="chatbubble-ellipses"
+                                style={{
+                                    fontSize: 24,
+                                    color: "#FFFFFF",
+                                    
+                                }}
+                                ></Ionicons>
+
+                </Touch>
+                
                 </CommentCont>
             </Margin>
 

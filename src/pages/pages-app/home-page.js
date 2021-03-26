@@ -6,7 +6,7 @@ import LanguagePost from '../../components/languagePost';
 import axios from 'axios';
 import CommentPost from '../../components/comment';
 
-const HomePage = () => {
+const HomePage = ({navigation }) => {
 
     const [data, setData] = useState('')
 
@@ -22,7 +22,6 @@ const HomePage = () => {
 
         .then(e => {
             setData(e.data.result)
-            console.log("hello", data)
         })
         
         .catch(e => {
@@ -41,16 +40,22 @@ const HomePage = () => {
                     backgroundColor: "none"
                 }}
                 renderItem={ ({ item }) => {
+                    console.log("lol", item)
                     return (
                         <LanguagePost
                             word={item.post_title}
                             description={item.post_description}
                             name={item.fullname}
+                            img={item.avatar}
+                            onCommentPress={()=> navigation.navigate('Individual-Post', {
+                                id: item.id_post
+                            })}
+                            onUserPress={()=> {
+                                navigation.navigate('User-Profile', {
+                                    id: item.post_author
+                                })
+                            }}
                         >
-                            <CommentPost
-
-                            >
-                            </CommentPost>
                         </LanguagePost>
                     )
                 }}

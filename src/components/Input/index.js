@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import Center from '../center';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Button } from 'react-native';
 
 const InputContainer = styled.View`
     width: 100%;
@@ -45,7 +46,15 @@ const Error = styled.Text`
     display: ${props=>props.display ? "flex" : "none"}
 `;
 
-const CustomInput = ({background, fontweight, titlecolor, maxlength, colorplace, color, placeholder, titledisplay, half, title, password, display, onChange,numberOfLines, multiline}) => {
+const ButtonWrapper = styled.View`
+    display: ${props=>props.display ? "flex" : "none"}; 
+
+`;
+
+const CoolButton = styled.Button`
+`;
+
+const CustomInput = ({background,onButtonPress, buttondisplay, fontweight, titlecolor, maxlength, colorplace, color, placeholder, titledisplay, half, title, password, display, onChange,numberOfLines, multiline}) => {
     const [iconname, setIconName] = useState('eye-off-outline')
     return (
         <Wrapper half={half}>
@@ -74,6 +83,12 @@ const CustomInput = ({background, fontweight, titlecolor, maxlength, colorplace,
                 >
                     <Ionicons name={iconname} size={24}/>
                 </PasswordView>
+                <ButtonWrapper display={buttondisplay}>
+                    <CoolButton onPress={onButtonPress} title={"Send"}>
+
+                    </CoolButton>
+                </ButtonWrapper>
+                
             </InputContainer>
             <Error display={display}>Username or Password is Incorrect</Error>
         </Wrapper>

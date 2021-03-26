@@ -5,6 +5,7 @@ import languages from '../../../assets/languages.json'
 
 const Cont = styled.View`
     width: 100%;
+    height: 220px;
     padding: 15px 0px;
 `;
 
@@ -13,11 +14,12 @@ const TextComp = styled.Text`
     padding: 10px 0px;
 `
 
-const LanguageDropdown = ({title, onChange}) => {
+const LanguageDropdown = ({title, onChange,z}) => {
     return (
         <Cont>
             <TextComp>{title}</TextComp>
             <DropDownPicker
+                zIndex={z}
                 itemStyle={{
                     justifyContent: 'flex-start'
                 }}

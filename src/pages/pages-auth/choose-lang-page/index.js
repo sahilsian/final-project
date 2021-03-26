@@ -60,11 +60,11 @@ const ChooseLanguage = ({navigation, route}) => {
     return (
         <Cont>
             <Center>
-                <LanguageDropdown onChange={e => {
+                <LanguageDropdown z={5000} onChange={e => {
                     setNative(e)
                     console.log(fluent.label, native.label, level)
                 }}></LanguageDropdown>
-                <LanguageDropdown onChange={e => {
+                <LanguageDropdown z={4000} onChange={e => {
                     setFluent(e)
                     console.log(fluent.label, native.label, level)
                 }} title={"Learning Language"}></LanguageDropdown>
