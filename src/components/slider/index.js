@@ -22,8 +22,8 @@ const CustomSlider = ({onSlidingComplete}) => {
         <Cont>
             <Slider
                     style={{width: "100%", height: 40}}
-                    minimumValue={0}
-                    maximumValue={2}
+                    minimumValue={1}
+                    maximumValue={3}
                     minimumTrackTintColor="#A47AFE"
                     maximumTrackTintColor="#9F7AFE"
                     thumbTintColor="#A47AFE"

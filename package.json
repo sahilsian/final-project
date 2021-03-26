@@ -19,6 +19,7 @@
     "@storybook/react-native-server": "^5.3.23",
     "axios": "^0.21.1",
     "expo": "~40.0.0",
+    "expo-image-picker": "~9.2.0",
     "expo-linear-gradient": "~8.4.0",
     "expo-status-bar": "~1.0.3",
     "faker": "^5.4.0",

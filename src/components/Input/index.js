@@ -5,9 +5,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const InputContainer = styled.View`
     width: 100%;
-    background-color: #fff;
+    background-color: ${props=>props.background ? props.background : "#fff"};
     padding: 15px;
-    border: 1px solid #eeeeee;
+    border: ${props=>props.background ? props.background : "1px solid #eeeeee"};
     border-radius: 15px;
     flex-direction: row;
     justify-content: space-between;
@@ -15,14 +15,18 @@ const InputContainer = styled.View`
 `;
 
 const Input = styled.TextInput`
-    background-color: #fff;
+    background-color: ${props=>props.background ? props.background : "#fff"};
     flex: 1;
+    color: ${props=>props.color ? props.color : "#121212"};
+    justify-content: flex-start;
 `;
 
 
 const Title = styled.Text`
     padding: 10px 0px;
-    color: #2E2727;
+    color: ${props=>props.color ? props.color : "#2E2727"};
+    display: ${props=>props.display ? "none" : "flex"};
+    font-weight: ${props=>props.fontweight ? 'bold' : 'normal'}
 `;
 
 const Wrapper = styled.View`
@@ -41,19 +45,23 @@ const Error = styled.Text`
     display: ${props=>props.display ? "flex" : "none"}
 `;
 
-const CustomInput = ({placeholder, half, title, password, display, onChange,numberOfLines, multiline}) => {
+const CustomInput = ({background, fontweight, titlecolor, maxlength, colorplace, color, placeholder, titledisplay, half, title, password, display, onChange,numberOfLines, multiline}) => {
     const [iconname, setIconName] = useState('eye-off-outline')
     return (
         <Wrapper half={half}>
-            <Title>{title}</Title>
-            <InputContainer>
+            <Title fontweight={fontweight} color={titlecolor} display={titledisplay}>{title}</Title>
+            <InputContainer background={background}>
                 <Input
+                    color={color}
+                    placeholderTextColor={colorplace}
+                    background={background}
                     placeholder={placeholder}
                     secureTextEntry={iconname == 'eye-off-outline' ? false : true}
                     onChangeText={onChange}
                     numberOfLines={numberOfLines}
                     multiline={multiline}
-                    maxLength={254}
+                    maxLength={maxlength}
+                    
                 />
                 <PasswordView 
                 display={password}
@@ -79,7 +87,8 @@ CustomInput.defaultProps = {
     title: "Hello World",
     password: false,
     numberOfLines: 1,
-    multiline: false
+    multiline: false,
+    maxlength: 254
 };
 
 export default CustomInput;

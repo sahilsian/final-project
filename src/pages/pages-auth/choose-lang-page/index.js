@@ -32,7 +32,7 @@ const ChooseLanguage = ({navigation, route}) => {
     const [native, setNative] = useState('')
     const [level, setLevel] = useState(0)
 
-    const HandleSignup = async(email, fullname, password, native, fluent, level) => {
+    const HandleSignup = async(email, fullname, password, fluent, native, level) => {
         console.log(email, fullname, password, fluent, native, level)
         axios({
             method: 'post',
@@ -41,8 +41,8 @@ const ChooseLanguage = ({navigation, route}) => {
                 email: email,
                 fullname: fullname,
                 password: password,
-                fluent_language: fluent,
-                learning_language: native,
+                fluent_language: native,
+                learning_language: fluent,
                 learning_level: level
             }
         })
@@ -75,7 +75,7 @@ const ChooseLanguage = ({navigation, route}) => {
             <ButtonContainer>
                 <CustomButton 
                 title={"Create your Account"} 
-                onPress={()=> HandleSignup(email, fullname, password, native.label, fluent.label , level)}
+                onPress={()=> HandleSignup(email, fullname, password, fluent.label, native.label, level)}
                 />
                 
             </ButtonContainer>
